@@ -30,7 +30,7 @@ updateRessS(a:IreservationSalle , id : number):Observable<IreservationSalle> {
 
 
   deleteRess(id: number): Observable<string> {
-    return this.http.delete(BASE_URL + 'api/reservation/salle' + id, { headers: this.headers!, responseType: 'text' });
+    return this.http.delete(BASE_URL + 'api/reservation/salle/' + id, { headers: this.headers!, responseType: 'text' });
   }
   getRessSlById(id:number):Observable<IreservationSalle|null>{
     return this.getAllRessS().pipe(

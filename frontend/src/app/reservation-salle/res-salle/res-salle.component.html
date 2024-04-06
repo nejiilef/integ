@@ -67,15 +67,23 @@
                 <div class="col-lg-12">
                     <!-- appoinment area two start -->
                     <div class="appoinment-area-two plr--120 plr_md--40 plr_sm--30">
-                        <form class="appoinment-h2 rts-slide-up-gsap" (submit)="validateTimes()">
+                        <form class="appoinment-h2 rts-slide-up-gsap" #f="ngForm" (submit)="validateTimes(f)">
                             <div class="input-line">
                                 <div class="input-half">
+                                    <label for="HeureDebut">Salle</label>
+                                    <select id="salle"   name="salle" [(ngModel)]="selectedSalle" class="form-select form-select-sm" >
+                                        <option value="" disabled selected>Choisissez l'arrondissement</option>
+                                        <option *ngFor="let s of salle" [ngValue]="s">{{s.libelle}}</option>
+                            
+                                    </select>
+                                </div>
+                                <div class="input-half">
                                     <label for="HeureDebut">Heure Debut</label>
-                                    <input id="HeureDebut" type="Time" [value]="time1" (ngModelChange)="updateTime1($event)" placeholder="Heure Debut: " required name="time1" >
+                                    <input id="HeureDebut" type="Time" [value]="time1" (ngModelChange)="updateTime1($event)" placeholder="Heure Debut: " required name="heureDebut" ngModel>
                                 </div>
                                 <div class="input-half">
                                     <label for="HeureFin">Heure Fin</label>
-                                    <input id="HeureFin" type="Time" [value]="time2" (ngModelChange)="updateTime2($event)" placeholder="HeureFin : " required name="time2" >
+                                    <input id="HeureFin" type="Time" [value]="time2" (ngModelChange)="updateTime2($event)" placeholder="HeureFin : " required name="heureFin" ngModel>
                                 </div>
                                 
                             </div>
@@ -83,7 +91,7 @@
                                 
                                 <div class="input-half">
                                     <label for="Jour">Jour</label>
-                                    <input id="Jour" type="Date" placeholder="Jour : " required name="libelle" ngModel>
+                                    <input id="Jour" type="Date" placeholder="Jour : " required name="jour" ngModel>
                                 </div>
                                 
                             </div>

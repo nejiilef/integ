@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ReservationSalleServiceService } from '../service/reservation-salle-service.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { IreservationSalle } from '../model/ireservation-salle';
 
 @Component({
   selector: 'app-res-salle',
@@ -15,8 +16,9 @@ export class ResSalleComponent {
   time1: string | undefined;
   time2: string | undefined;
 
-  validateTimes() {
-    
+  validateTimes(f:NgForm) {
+    this.time1 =f.value.heureDebut;
+    this.time2=f.value.heureFin;
       console.log('Time 1:', this.time1);
       console.log('Time 2:', this.time2);
       
@@ -26,11 +28,12 @@ export class ResSalleComponent {
       this.time2 = undefined
       alert('in Appropriate time');
     }
+    else{
+      console.log("submit")
+      this.onSubmit(f);
+    }
   }
-  ngOnInit() {
-    this.validateTimes();
-  }
-
+  
 
 
   updateTime2(event: any) {
@@ -86,18 +89,18 @@ selectedSalle : any;
 
 
 addRessS=(f:NgForm)=>{
-   const newArr={id : f.value.id , heureDebut:f.value.heureDebut,heureFin: f.value.heurFin , jour:f.value.jour}
-   this.service.addRessS(newArr as ReservationSalleServiceService , this.selectedSalle.id).subscribe(
+   const newArr={id : f.value.id , heureDebut:f.value.heureDebut,heureFin: f.value.heureFin , jour:f.value.jour}
+   this.service.addRessS(newArr as IreservationSalle , this.selectedSalle.id).subscribe(
     response => {
    
       console.log('reservation added successfully:', response);
     },
     error => {
-     
+     alert("Salle deja reserve pendant cette periode !");
       console.error('Error adding reservation:', error);
     }
    );
-   this.router.navigate(["/ressSale"]);
+   this.router.navigate(["/ressSalle"]);
   }
 
   
