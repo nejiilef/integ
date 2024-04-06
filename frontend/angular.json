@@ -33,7 +33,8 @@
               "src/assets/css/vendor/metismenu.css",
               "src/assets/css/plugins/animate.min.css",
               "src/assets/css/vendor/bootstrap.min.css",
-              "src/assets/css/style.css"
+              "src/assets/css/style.css" 
+              
             ],
             "scripts": []
           },
